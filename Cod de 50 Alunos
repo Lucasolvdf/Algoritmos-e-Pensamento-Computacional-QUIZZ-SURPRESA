@@ -1,0 +1,37 @@
+
+Desenvolva um código que permita armazenar a nota de até 50 alunos e diga a média geral das notas.
+
+
+#include <stdio.h>
+
+int main() {
+    float notas[50];
+    int i, totalAlunos;
+    float soma = 0, media;
+
+    printf("Quantos alunos deseja cadastrar? (máximo 50): ");
+    scanf("%d", &totalAlunos);
+
+    if (totalAlunos < 1 || totalAlunos > 50) {
+        printf("Número inválido de alunos.\n");
+        return 1;
+    }
+
+    for (i = 0; i < totalAlunos; i++) {
+        printf("Digite a nota do aluno %d: ", i + 1);
+        scanf("%f", &notas[i]);
+
+        if (notas[i] < 0 || notas[i] > 10) {
+            printf("Nota inválida. Digite uma nota entre 0 e 10.\n");
+            i--; 
+            continue;
+        }
+
+        soma += notas[i];
+    }
+
+    media = soma / totalAlunos;
+    printf("\nMédia geral da turma: %.2f\n", media);
+
+    return 0;
+}
